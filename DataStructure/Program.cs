@@ -1,5 +1,6 @@
 ﻿
 using DataStructure.BalancedParantheses;
+using DataStructure.BankingCashCounter;
 using DataStructure.OrderedList;
 using DataStructure.UnorderedList;
 using System;
@@ -21,6 +22,7 @@ namespace DataStructure
                 Console.WriteLine("1: Unordered List");
                 Console.WriteLine("2: Ordered List");
                 Console.WriteLine("3: Balanced Parantheses");
+                Console.WriteLine("3: Banking Cash Counter");
                 Console.WriteLine("0: Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -30,7 +32,7 @@ namespace DataStructure
                         CONTINUE = false;
                         break;
                     case 1:
-                        LinkedList<string> linkedList = new LinkedList<string>();
+                        LinkedLists<string> linkedList = new LinkedLists<string>();
                         string filePath = @"V:\BridgeLabz\DataStructure\DataStructure\UnorderedList\UnorderedList.txt";
                         string text = File.ReadAllText(filePath);
                         string[] textArray = text.Split(" ");
@@ -78,6 +80,27 @@ namespace DataStructure
                             Console.WriteLine("Arithmetic Expression is balanced");
                         else
                             Console.WriteLine("Arithmetic Expression not is balanced");
+                        break;
+                      case 4:
+                        Console.WriteLine("BankingCashConuter");
+                        BankAccount account;
+                        LinkedLists<BankAccount> accountList = new LinkedLists<BankAccount>();
+                        CashCounter cashCounter = new CashCounter();
+                        // CashCounterQueue<BankAccount> cashCounterQueue = new CashCounterQueue<BankAccount>();
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Console.WriteLine("Enter account holder name:");
+                            string name = Console.ReadLine();
+                            Console.WriteLine("enter amount:");
+                            int amount = Convert.ToInt32(Console.ReadLine());
+                            account = new BankAccount(name, amount);
+                            accountList.AddLast(account);
+                            //cashCounter.SelectChoice(accountList);
+                        }
+                        foreach (BankAccount i in accountList)
+                        {
+                            Console.WriteLine("Account holder:{0}   balance:{1}", i.accHolderName, i.amount);
+                        }
                         break;
                     default:
                         Console.WriteLine("Thank you! Select a valid option.");
