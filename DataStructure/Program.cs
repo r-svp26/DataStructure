@@ -1,4 +1,6 @@
-﻿using DataStructure.OrderedList;
+﻿
+using DataStructure.BalancedParantheses;
+using DataStructure.OrderedList;
 using DataStructure.UnorderedList;
 using System;
 using System.IO;
@@ -18,10 +20,15 @@ namespace DataStructure
                 Console.WriteLine("Enter your choice");
                 Console.WriteLine("1: Unordered List");
                 Console.WriteLine("2: Ordered List");
+                Console.WriteLine("3: Balanced Parantheses");
                 Console.WriteLine("0: Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
+                    case 0:
+                        Console.WriteLine("Have a nice day!");
+                        CONTINUE = false;
+                        break;
                     case 1:
                         LinkedList<string> linkedList = new LinkedList<string>();
                         string filePath = @"V:\BridgeLabz\DataStructure\DataStructure\UnorderedList\UnorderedList.txt";
@@ -44,13 +51,6 @@ namespace DataStructure
                         Console.WriteLine("List of words after modification");
                         Console.WriteLine(modifiedText);
                         break;
-                    case 0:
-                        Console.WriteLine("Have a nice day!");
-                        CONTINUE = false;
-                        break;
-                    default:
-                        Console.WriteLine("Thank you! Select a valid option.");
-                        break;
                     case 2:
                         OrderedList<string> ordered = new OrderedList<string>();
                         string filePath1 = @"V:\BridgeLabz\DataStructure\DataStructure\OrderedList\OrderedList.txt";
@@ -71,6 +71,16 @@ namespace DataStructure
                         File.WriteAllText(filePath1, newList);
                         Console.WriteLine("List of numbers after modification");
                         Console.WriteLine(newList);
+                        break;
+                    case 3:
+                        bool expression = BalanceParantheses.CheckParantheses();
+                        if (expression == true)
+                            Console.WriteLine("Arithmetic Expression is balanced");
+                        else
+                            Console.WriteLine("Arithmetic Expression not is balanced");
+                        break;
+                    default:
+                        Console.WriteLine("Thank you! Select a valid option.");
                         break;
                 }
             }
