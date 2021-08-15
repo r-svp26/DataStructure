@@ -1,4 +1,5 @@
-﻿using DataStructure.UnorderedList;
+﻿using DataStructure.OrderedList;
+using DataStructure.UnorderedList;
 using System;
 using System.IO;
 
@@ -16,6 +17,7 @@ namespace DataStructure
             {
                 Console.WriteLine("Enter your choice");
                 Console.WriteLine("1: Unordered List");
+                Console.WriteLine("2: Ordered List");
                 Console.WriteLine("0: Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -48,6 +50,27 @@ namespace DataStructure
                         break;
                     default:
                         Console.WriteLine("Thank you! Select a valid option.");
+                        break;
+                    case 2:
+                        OrderedList<string> ordered = new OrderedList<string>();
+                        string filePath1 = @"V:\BridgeLabz\DataStructure\DataStructure\OrderedList\OrderedList.txt";
+                        string text1 = File.ReadAllText(filePath1);
+                        string[] textArray1 = text1.Split(" ");
+                        for (int i = 0; i < textArray1.Length; i++)
+                        {
+                            ordered.Add(textArray1[i]);
+                        }
+                        Console.WriteLine("Enter the number to be searched");
+                        string num = Console.ReadLine();
+                        bool rs = ordered.Search(num);
+                        if (rs == true)
+                            ordered.Pop(num);
+                        else
+                            ordered.Add(num);
+                        string newList = ordered.Display();
+                        File.WriteAllText(filePath1, newList);
+                        Console.WriteLine("List of numbers after modification");
+                        Console.WriteLine(newList);
                         break;
                 }
             }
